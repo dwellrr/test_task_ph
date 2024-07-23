@@ -74,7 +74,7 @@ def get_video_chunk(i, start_sec, end_sec):
     )
 
 @st.cache_data
-def get_video_length(video_path, raw_vid):
+def get_video_length(video_path):
     metadata = (ffmpeg
                 .probe(video_path)
                 )
@@ -83,9 +83,9 @@ def get_video_length(video_path, raw_vid):
     duration = float(duration_str)
     return duration
 
-def get_splits(video_path, vid_raw, splits_amount, clip_to_change):
+def get_splits(video_path, splits_amount, clip_to_change):
     
-    video_length = get_video_length(video_path, vid_raw)
+    video_length = get_video_length(video_path)
     chunk_length = video_length/splits_amount
     current_chunk_start = 0
 
@@ -157,7 +157,6 @@ if vid:
     vid_file = Path(f'{TEMP_PATH}toprocess.mp4')
     if not vid_file.is_file():
         save_video_pipe(vid, f'{TEMP_PATH}toprocess.mp4')
-    vid_raw = vid.getvalue()
 
 
     st.write("Choose options to apply")
@@ -188,10 +187,8 @@ if vid:
         s_s.displaying = False
         st.write(f"#### Seed {seed}")
 
-        #The reason why we pass raw bytes here is to make sure the cached function re-runs
-        #if thefile name is the same, number of clips is the same, but the video is different 
-        paths = get_splits(f"{TEMP_PATH}toprocess.mp4", vid_raw, clip_number, clip_to_change) 
-        duration = get_video_length(paths[clip_to_change-1], vid_raw)
+        paths = get_splits(f"{TEMP_PATH}toprocess.mp4", clip_number, clip_to_change) 
+        duration = get_video_length(paths[clip_to_change-1])
         duration_width = int(duration * 100)
         duration_width += 8 - (duration_width % 8)
 

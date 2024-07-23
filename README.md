@@ -4,7 +4,7 @@ This project is a Streamlit application that integrates Riffusion. The applicati
 
 ## Features (for brownie points)
 
-- Runs on Docker (image available on Docker Hub)
+- Runs on Docker (image available on Docker Hub) https://hub.docker.com/repository/docker/wdwell/test-task-riff/general
 - GPU (CUDA) or CPU available
 - Configurable options for Riffusion
 - Can audjust the amount of columns for your outputs (up to 5, 3 by default)

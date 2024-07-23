@@ -14,7 +14,7 @@ This project is a Streamlit application that integrates Riffusion. The applicati
 - The clips are divided into equal lengths.
 - `ffmpeg` (and Python `ffmpeg` bindings) are used for video manipulation.
 - **Important:** The deprecated warning messages come from Riffusion itself as it is not well-maintained and uses deprecated cache decorators.
-- Riffusion needs to be incluses localy and linked locally since the newest version is not available on pip.
+- Riffusion needs to be included locally and linked locally since the newest version is not available on pip.
 
 ## To install
 
